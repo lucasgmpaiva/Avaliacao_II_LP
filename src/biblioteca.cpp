@@ -9,13 +9,72 @@ using namespace std;
 #include "../include/biblioteca.hpp"
 
 Biblioteca::Biblioteca() { // @suppress("Class members should be properly initialized")
-	this->quantidadeCDs = 0;
-	this->quantidadeDVDs = 0;
-	this->quantidadeLivros = 0;
+	this->quantidadeCDs = 2;
+	this->quantidadeDVDs = 2;
+	this->quantidadeLivros = 2;
+
+	Livro * domCasmurro1 = new Livro();
+	domCasmurro1->setTitulo("Dom Casmurro");
+	domCasmurro1->setAutor("Machado de Assis");
+	domCasmurro1->setEditora("Companhia das Letras");
+	domCasmurro1->setAno_Lancamento(1899);
+	domCasmurro1->setISBN("9789726700357");
+	domCasmurro1->setTipoDeMidia(0);
+	Midia * domCasmurro = domCasmurro1;
+	this->midias.push_back(domCasmurro);
+
+	Livro * guiaMochileiro1 = new Livro();
+	guiaMochileiro1->setTitulo("O Guia do Mochileiro das Galáxias");
+	guiaMochileiro1->setAutor("Douglas Adams");
+	guiaMochileiro1->setEditora("Pan Books");
+	guiaMochileiro1->setAno_Lancamento(1979);
+	guiaMochileiro1->setISBN("9780517693117");
+	guiaMochileiro1->setTipoDeMidia(0);
+	Midia * guiaMochileiro = guiaMochileiro1;
+	this->midias.push_back(guiaMochileiro);
+
+	CD* saladDays1 = new CD();
+	saladDays1->setTitulo("Salad Days");
+	saladDays1->setAutor("Mac DeMarco");
+	saladDays1->setGravadora("Captured Tracks");
+	saladDays1->setAno_Lancamento(2014);
+	saladDays1->setQuantidadeFaixas(11);
+	saladDays1->setTipoDeMidia(1);
+	Midia* saladDays = saladDays1;
+	this->midias.push_back(saladDays);
+
+	CD* tranquilityBase1 = new CD();
+	tranquilityBase1->setTitulo("Tranquility Base Hotel & Casino");
+	tranquilityBase1->setAutor("Arctic Monkeys");
+	tranquilityBase1->setGravadora("Domino Records");
+	tranquilityBase1->setAno_Lancamento(2018);
+	tranquilityBase1->setQuantidadeFaixas(11);
+	tranquilityBase1->setTipoDeMidia(1);
+	Midia* tranquilityBase = tranquilityBase1;
+	this->midias.push_back(tranquilityBase);
+
+	DVD* pulpFiction1 = new DVD();
+	pulpFiction1->setTitulo("Pulp Fiction");
+	pulpFiction1->setAutor("Quentin Tarantino");
+	pulpFiction1->setDuracao(178);
+	pulpFiction1->setAno_Lancamento(1994);
+	pulpFiction1->setClassificacao("Não recomendado para menores de 18 anos");
+	pulpFiction1->setTipoDeMidia(2);
+	Midia* pulpFiction = pulpFiction1;
+	this->midias.push_back(pulpFiction);
+
+	DVD* letBe1 = new DVD();
+	letBe1->setTitulo("Let It Be - The Beatles (Documentary)");
+	letBe1->setAutor("Michael Lindsay-Hogg");
+	letBe1->setDuracao(81);
+	letBe1->setAno_Lancamento(1970);
+	letBe1->setClassificacao("Livre para todos os públicos");
+	letBe1->setTipoDeMidia(2);
+	Midia* letBe = letBe1;
+	this->midias.push_back(letBe);
 }
 
 Biblioteca::~Biblioteca() {
-
 }
 
 int Biblioteca::getQuantidadeLivros() {
@@ -190,7 +249,7 @@ void Biblioteca::removerMidia() {
 	cout <<"|--------------Remoção de Mídia---------------|" << endl;
 	cout << "Informe o nome da mídia que deseja remover: " << endl;
 	getline(cin, nome);
-	cout << "Informe o tipo de mídia que deseja remover: " << endl;
+	cout << "Informe o tipo de mídia que deseja remover(0 - Livro; 1 - CD; 2 - DVD): " << endl;
 	cin >> tipoMidia;
 	Midia* midiaPraDeletar = this->buscarMidia(nome, tipoMidia);
 	if (!midiaPraDeletar) {
@@ -224,31 +283,30 @@ void Biblioteca::detalharMidia(Midia* umaMidia) {
 		Livro* aux = (Livro*) umaMidia;
 		cout << "------------Livro--------------" << endl << "Título: "
 				<< aux->getTitulo() << ";" << endl << "Autor: "
-				<< aux->getAutor() << ";" << endl << "Ano de Lançamento: "
-				<< aux->getAno_Lancamento() << ";" << endl << "Editora: "
+				<< aux->getAutor() << ";" << endl   << "Editora: "
 				<< aux->getEditora() << ";" << endl << "ISBN: "
-				<< aux->getISBN() << "." << endl
+				<< aux->getISBN() << ";" << endl << "Ano de Lançamento: "
+				<< aux->getAno_Lancamento() << "." << endl
 				<< "______________________________" << endl;
 
 	} else if (umaMidia->getTipoDeMidia() == 1) {
 		CD* aux = (CD*) umaMidia;
 		cout << "-------------CD---------------" << endl << "Título: "
 				<< aux->getTitulo() << ";" << endl << "Banda/Artista: "
-				<< aux->getAutor() << ";" << endl << "Ano de Lançamento: "
-				<< aux->getAno_Lancamento() << ";" << endl << "Gravadora: "
+				<< aux->getAutor() << ";" << endl  << "Gravadora: "
 				<< aux->getGravadora() << ";" << endl << "Número de Faixas: "
-				<< aux->getQuantidadeFaixas() << "." << endl
+				<< aux->getQuantidadeFaixas() << ";" << endl << "Ano de Lançamento: "
+				<< aux->getAno_Lancamento() << "." << endl
 				<< "_____________________________" << endl;
 	} else if (umaMidia->getTipoDeMidia() == 2) {
 		DVD* aux = (DVD*) umaMidia;
 		cout << "-------------DVD---------------" << endl << "Título: "
 				<< aux->getTitulo() << ";" << endl << "Diretor: "
-				<< aux->getAutor() << ";" << endl << "Ano de Lançamento: "
-				<< aux->getAno_Lancamento() << ";" << endl
-				<< "Classificação Indicativa: " << aux->getClassificacao()
-				<< ";" << endl << "Duração: " << aux->getDuracao()
-				<< " minutos." << endl << "____________________________"
-				<< endl;
+				<< aux->getAutor() << ";" << endl << "Classificação Indicativa: " 
+				<< aux->getClassificacao()<< ";" << endl << "Duração: " 
+				<< aux->getDuracao() << " minutos;" << endl << "Ano de Lançamento: "
+				<< aux->getAno_Lancamento() << "." << endl 
+				<< "____________________________" << endl;
 	}
 }
 
@@ -259,7 +317,7 @@ void Biblioteca::editarMidia() {
 	cout << "|--------------Edição de Mídia--------------|"  << endl;
 	cout << "Informe o nome da mídia que deseja editar: " << endl;
 	getline(cin, nome);
-	cout << "Informe o tipo de mídia que deseja editar: " << endl;
+	cout << "Informe o tipo de mídia que deseja editar(0 - Livro; 1 - CD; 2 - DVD): " << endl;
 	cin >> tipoMidia;
 
 	Midia* midiaPraEditar = this->buscarMidia(nome, tipoMidia);
