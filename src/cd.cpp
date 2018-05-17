@@ -6,27 +6,34 @@
 
 #include "../include/cd.hpp"
 
-CD::CD(){ // @suppress("Class members should be properly initialized")
+
+CD::CD() { // @suppress("Class members should be properly initialized")
 
 }
 
-CD::CD(int umaQuantidade, string umaGravadora){
+CD::CD(string umTitulo, string umAutor, int umAno, int umaQuantidade,
+		string umaGravadora) {
+	this->titulo = umTitulo;
+	this->autor = umAutor;
+	this->ano_lancamento = umAno;
 	this->quantidadeFaixas = umaQuantidade;
 	this->gravadora = umaGravadora;
+	this->tipoDeMidia = 1;
 }
 
-int CD::getQuantidadeFaixas(){
+int CD::getQuantidadeFaixas() {
 	return this->quantidadeFaixas;
 }
 
-void CD::setQuantidadeFaixas(int umaQuantidade){
+void CD::setQuantidadeFaixas(int umaQuantidade) {
 	this->quantidadeFaixas = umaQuantidade;
 }
 
-string CD::getGravadora(){
+string CD::getGravadora() {
 	return this->gravadora;
 }
 
-void CD::setGravadora(string umaGravadora){
+void CD::setGravadora(string umaGravadora) {
 	this->gravadora = umaGravadora;
 }
+

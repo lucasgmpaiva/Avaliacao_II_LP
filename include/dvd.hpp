@@ -9,13 +9,13 @@
 #include "midia.hpp"
 
 class DVD: public Midia {
-private:
+protected:
 	int duracao;
 	string classificacao;
 
 public:
 	DVD();
-	DVD(int umaDuracao, string umaClassificacao);
+	DVD(string umTitulo, string umAutor, int umAno, int umaDuracao, string umaClassificacao);
 	int getDuracao();
 	void setDuracao(int umaDuracao);
 	string getClassificacao();

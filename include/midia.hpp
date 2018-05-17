@@ -10,19 +10,22 @@
 using namespace std;
 
 class Midia {
-private:
+protected:
 	string titulo;
 	string autor;
 	int ano_lancamento;
+	int tipoDeMidia;
 
 public:
 	Midia();
-	Midia(string umTitulo, string umAutor, int umAno);
+	Midia(string umTitulo, string umAutor, int umAno, int umTipoDeMidia);
 	string getTitulo();
 	void setTitulo(string umTitulo);
 	string getAutor();
 	void setAutor(string umAutor);
 	int getAno_Lancamento();
 	void setAno_Lancamento(int umAno);
+	int getTipoDeMidia();
+	void setTipoDeMidia(int umTipoDeMidia);
 };
 #endif /* MIDIA_HPP */

@@ -6,36 +6,46 @@
 
 #include "../include/midia.hpp"
 
-Midia::Midia(){ // @suppress("Class members should be properly initialized")
+Midia::Midia() { // @suppress("Class members should be properly initialized")
 
 }
 
-Midia::Midia(string umTitulo, string umAutor, int umAno){
+Midia::Midia(string umTitulo, string umAutor, int umAno, int umTipoDeMidia) {
 	this->titulo = umTitulo;
 	this->autor = umAutor;
 	this->ano_lancamento = umAno;
+	this->tipoDeMidia = umTipoDeMidia;
 }
 
-string Midia::getTitulo(){
+string Midia::getTitulo() {
 	return this->titulo;
 }
 
-void Midia::setTitulo(string umTitulo){
+void Midia::setTitulo(string umTitulo) {
 	this->titulo = umTitulo;
 }
 
-string Midia::getAutor(){
+string Midia::getAutor() {
 	return this->autor;
 }
 
-void Midia::setAutor(string umAutor){
+void Midia::setAutor(string umAutor) {
 	this->autor = umAutor;
 }
 
-int Midia::getAno_Lancamento(){
+int Midia::getAno_Lancamento() {
 	return this->ano_lancamento;
 }
 
-void Midia::setAno_Lancamento(int umAno){
+void Midia::setAno_Lancamento(int umAno) {
 	this->ano_lancamento = umAno;
 }
+
+int Midia::getTipoDeMidia(){
+	return this->tipoDeMidia;
+}
+
+void Midia::setTipoDeMidia(int umTipoDeMidia){
+	this->tipoDeMidia = umTipoDeMidia;
+}
+
